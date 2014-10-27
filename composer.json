@@ -1,6 +1,6 @@
 {
-    "name": "foo/bar",
-    "description": "Something",
+    "name": "yitznewton/procslyte",
+    "description": "ProCSLyte: a PHP parser for Citation Style Language (CSL)",
     "license": "BSD-2-Clause",
     "authors": [
         {
@@ -21,8 +21,8 @@
     "prefer-stable": true,
     "autoload": {
         "psr-0": {
-            "Yitznewton\\": "src/",
-            "Yitznewton\\Tests\\": "tests/"
+            "Yitznewton\\Procslyte\\": "src/",
+            "Yitznewton\\Tests\\Procslyte\\": "tests/"
         }
     }
 }
