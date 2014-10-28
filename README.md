@@ -1,4 +1,10 @@
-![Travis build status](https://travis-ci.org/yitznewton/procslyte.svg?branch=master)
+![Travis build status](http://img.shields.io/travis/yitznewton/procslyte.svg)
+![PHP 5.3 not supported](http://img.shields.io/badge/5.3-not_supported-red.svg)
+![PHP 5.4 supported](http://img.shields.io/badge/5.4-supported-orange.svg)
+![PHP 5.5 recommended](http://img.shields.io/badge/5.5-recommended-green.svg)
+![PHP 5.6 recommended](http://img.shields.io/badge/5.6-recommended-green.svg)
+![HHVM not tested](http://img.shields.io/hhvm/yitznewton/procslyte.svg)
+![BSD 2-Clause license](http://img.shields.io/packagist/l/yitznewton/procslyte.svg)
 
 # ProCSLyte: a PHP processor for Citation Style Language (CSL)
 
