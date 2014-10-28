@@ -14,7 +14,6 @@ class QuotesRenderer extends DecoratingRenderer implements Renderer
      * @param array $settings
      * @param Renderer $innerRenderer
      * @param Locale $locale
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
      */
     public function __construct(array $settings, Renderer $innerRenderer, Locale $locale)
     {
@@ -43,7 +42,7 @@ class QuotesRenderer extends DecoratingRenderer implements Renderer
         $lastCharacter = substr($innerValue, -1);
 
         if ($this->isPunctuation($lastCharacter)) {
-            return $this->quote(substr($innerValue, 0, -1)) . substr($innerValue, -1);
+            return $this->quote(substr($innerValue, 0, -1)) . $lastCharacter;
         } else {
             return $this->quote($innerValue);
         }
@@ -54,10 +53,10 @@ class QuotesRenderer extends DecoratingRenderer implements Renderer
         return sprintf('%s%s%s', self::QUOTE_CHARACTER, $innerValue, self::QUOTE_CHARACTER);
     }
 
-    private function isPunctuation($lastCharacter)
+    private function isPunctuation($character)
     {
         $punctuationChars = ['.', ','];
 
-        return in_array($lastCharacter, $punctuationChars);
+        return in_array($character, $punctuationChars);
     }
 }

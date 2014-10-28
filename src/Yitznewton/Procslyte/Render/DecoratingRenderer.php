@@ -8,6 +8,7 @@ abstract class DecoratingRenderer
      * @var array
      */
     protected $settings;
+
     /**
      * @var Renderer
      */

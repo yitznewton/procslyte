@@ -80,9 +80,6 @@ class TitleCaseRenderer extends MultiwordCaseRenderer implements Renderer
         return $string;
     }
 
-    /**
-     * @SuppressWarnings(PHPMD.UnusedPrivateMethod)
-     */
     private function renderUpperWord($word)
     {
         $lowerWord = strtolower($word);
