@@ -9,7 +9,7 @@
 # ProCSLyte
 ## A PHP processor for Citation Style Language (CSL)
 
-This library is a processor for CSL. See
+ProCSLyte (pronounced "proselyte" is a processor for CSL. See
 [the specification](http://citationstyles.org/downloads/specification.html#text).
 
 ProCSLyte is in very early development; it is not yet usable to generate
