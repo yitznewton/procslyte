@@ -2,7 +2,7 @@
 
 namespace Yitznewton\Procslyte\Render;
 
-class PrefixRenderer implements Renderer
+class AffixRenderer implements Renderer
 {
     private $internalRenderer;
     private $prefix;
@@ -10,6 +10,7 @@ class PrefixRenderer implements Renderer
     public function __construct(array $settings, Renderer $internalRenderer)
     {
         $this->prefix = \igorw\get_in($settings, ['prefix'], '');
+        $this->suffix = \igorw\get_in($settings, ['suffix'], '');
         $this->internalRenderer = $internalRenderer;
     }
 
@@ -19,6 +20,6 @@ class PrefixRenderer implements Renderer
      */
     public function render(array $citationData)
     {
-        return $this->prefix . $this->internalRenderer->render($citationData);
+        return $this->prefix . $this->internalRenderer->render($citationData) . $this->suffix;
     }
 }
