@@ -1,7 +1,7 @@
 ci: composer-validate phpcs phpmd php-cs-fixer phpunit
 
 composer-validate:
-	./composer.phar validate
+	composer validate
 
 phpcs:
 	./vendor/bin/phpcs --standard=psr2 ./src
