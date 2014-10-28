@@ -4,7 +4,7 @@ namespace Yitznewton\Procslyte\Render\Text;
 
 use Yitznewton\Procslyte\Render\Renderer;
 
-class TextRenderer implements Renderer
+class VariableRenderer implements Renderer
 {
     private $variable;
     private $form;
