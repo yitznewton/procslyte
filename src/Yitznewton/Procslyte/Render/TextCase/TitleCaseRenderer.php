@@ -85,14 +85,8 @@ class TitleCaseRenderer extends MultiwordCaseRenderer implements Renderer
 
     private function fixColonStopwords($string)
     {
-        $callback = function ($matches) {
-            if ($matches) {
-                return $matches[1] . ucfirst($matches[2]);
-            }
-        };
-
         foreach (self::$stopWords as $stopWord) {
-            $string = preg_replace_callback('/(:\s*)(' . $stopWord . ')/', $callback, $string);
+            $string = str_replace(': ' . $stopWord, ': ' . ucfirst($stopWord), $string);
         }
 
         return $string;
