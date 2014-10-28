@@ -6,10 +6,14 @@
 ![HHVM not tested](http://img.shields.io/hhvm/yitznewton/procslyte.svg)
 ![BSD 2-Clause license](http://img.shields.io/packagist/l/yitznewton/procslyte.svg)
 
-# ProCSLyte: a PHP processor for Citation Style Language (CSL)
+# ProCSLyte
+## A PHP processor for Citation Style Language (CSL)
 
 This library is a processor for CSL. See
 [the specification](http://citationstyles.org/downloads/specification.html#text).
+
+ProCSLyte is in very early development; it is not yet usable to generate
+citations.
 
 ## Installation
 
