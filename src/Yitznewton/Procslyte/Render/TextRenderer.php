@@ -8,6 +8,7 @@ class TextRenderer
 {
     private $variable;
     private $form;
+    private $value;
 
     /**
      * @param array $settings
@@ -16,11 +17,17 @@ class TextRenderer
     {
         $this->variable = \igorw\get_in($settings, ['variable']);
         $this->form = \igorw\get_in($settings, ['form']);
+        $this->value = \igorw\get_in($settings, ['value']);
     }
 
     public function render(array $citationData)
     {
+        if ($this->value) {
+            return $this->value;
+        }
+
         $variableNameWithForm = sprintf('%s-%s', $this->variable, $this->form);
+
         if ($this->form && isset($citationData[$variableNameWithForm])) {
             return $citationData[$variableNameWithForm];
         }

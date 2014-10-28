@@ -3,13 +3,12 @@
 namespace Yitznewton\Tests\Procslyte;
 
 use Yitznewton\Procslyte\Render\TextRenderer;
-use Yitznewton\Procslyte\UndefinedIndexException;
 
 class TextTest extends \PHPUnit_Framework_TestCase
 {
     public function testWithNonexistentVariable()
     {
-        $this->setExpectedException(UndefinedIndexException::class);
+        $this->setExpectedException('\Yitznewton\Procslyte\UndefinedIndexException');
         $renderer = new TextRenderer(['variable' => 'title']);
         $renderer->render([]);
     }
@@ -33,5 +32,12 @@ class TextTest extends \PHPUnit_Framework_TestCase
         $title = 'Foo bar baz';
         $renderer = new TextRenderer(['variable' => 'title', 'form' => 'short']);
         $this->assertEquals($title, $renderer->render(['title' => $title]));
+    }
+
+    public function testWithValue()
+    {
+        $value = 'foo';
+        $renderer = new TextRenderer(['value' => $value]);
+        $this->assertEquals($value, $renderer->render([]));
     }
 }
