@@ -2,28 +2,17 @@
 
 namespace Yitznewton\Procslyte\Render\TextCase;
 
+use Yitznewton\Procslyte\Render\DecoratingRenderer;
 use Yitznewton\Procslyte\Render\Renderer;
 
-class LowercaseRenderer implements Renderer
+class LowercaseRenderer extends DecoratingRenderer implements Renderer
 {
-    private $internalRenderer;
-
-    /**
-     * @param array $settings
-     * @param Renderer $internalRenderer
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
-     */
-    public function __construct(array $settings, Renderer $internalRenderer)
-    {
-        $this->internalRenderer = $internalRenderer;
-    }
-
     /**
      * @param array $citationData
      * @return string
      */
     public function render(array $citationData)
     {
-        return strtolower($this->internalRenderer->render($citationData));
+        return strtolower($this->innerRenderer->render($citationData));
     }
 }

@@ -35,25 +35,13 @@ class TitleCaseRenderer extends MultiwordCaseRenderer implements Renderer
         'yet',
     ];
 
-    private $internalRenderer;
-
-    /**
-     * @param array $settings
-     * @param Renderer $internalRenderer
-     * @SuppressWarnings(PHPMD.UnusedFormalParameter)
-     */
-    public function __construct(array $settings, Renderer $internalRenderer)
-    {
-        $this->internalRenderer = $internalRenderer;
-    }
-
     /**
      * @param array $citationData
      * @return string
      */
     public function render(array $citationData)
     {
-        $internalString = $this->internalRenderer->render($citationData);
+        $internalString = $this->innerRenderer->render($citationData);
 
         if ($this->isAllUpper($internalString)) {
             return $this->renderUpper($internalString);

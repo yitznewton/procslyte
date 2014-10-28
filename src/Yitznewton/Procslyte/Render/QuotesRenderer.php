@@ -4,11 +4,10 @@ namespace Yitznewton\Procslyte\Render;
 
 use Yitznewton\Procslyte\Locale;
 
-class QuotesRenderer implements Renderer
+class QuotesRenderer extends DecoratingRenderer implements Renderer
 {
     const QUOTE_CHARACTER = '"';
 
-    private $innerRenderer;
     private $locale;
 
     /**
@@ -19,7 +18,8 @@ class QuotesRenderer implements Renderer
      */
     public function __construct(array $settings, Renderer $innerRenderer, Locale $locale)
     {
-        $this->innerRenderer = $innerRenderer;
+        parent::__construct($settings, $innerRenderer);
+
         $this->locale = $locale;
     }
 
@@ -49,19 +49,11 @@ class QuotesRenderer implements Renderer
         }
     }
 
-    /**
-     * @param $innerValue
-     * @return string
-     */
     private function quote($innerValue)
     {
         return sprintf('%s%s%s', self::QUOTE_CHARACTER, $innerValue, self::QUOTE_CHARACTER);
     }
 
-    /**
-     * @param $lastCharacter
-     * @return bool
-     */
     private function isPunctuation($lastCharacter)
     {
         $punctuationChars = ['.', ','];

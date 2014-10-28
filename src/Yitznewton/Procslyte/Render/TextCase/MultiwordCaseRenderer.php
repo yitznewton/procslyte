@@ -2,7 +2,9 @@
 
 namespace Yitznewton\Procslyte\Render\TextCase;
 
-abstract class MultiwordCaseRenderer
+use Yitznewton\Procslyte\Render\DecoratingRenderer;
+
+abstract class MultiwordCaseRenderer extends DecoratingRenderer
 {
     /**
      * @param $string

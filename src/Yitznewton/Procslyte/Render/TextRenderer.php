@@ -20,6 +20,10 @@ class TextRenderer implements Renderer
         $this->value = \igorw\get_in($settings, ['value']);
     }
 
+    /**
+     * @param array $citationData
+     * @return string
+     */
     public function render(array $citationData)
     {
         if ($this->value) {
