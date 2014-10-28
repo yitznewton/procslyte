@@ -1,6 +1,6 @@
 {
     "name": "yitznewton/procslyte",
-    "description": "ProCSLyte: a PHP parser for Citation Style Language (CSL)",
+    "description": "ProCSLyte: a PHP processor for Citation Style Language (CSL)",
     "license": "BSD-2-Clause",
     "authors": [
         {
