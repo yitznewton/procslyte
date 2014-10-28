@@ -3,6 +3,7 @@
 namespace Yitznewton\Tests\Procslyte\Render;
 
 use Yitznewton\Procslyte\Render\AffixRenderer;
+use Yitznewton\Procslyte\Render\Text\ValueRenderer;
 
 class AffixRendererTest extends \PHPUnit_Framework_TestCase
 {
@@ -12,7 +13,7 @@ class AffixRendererTest extends \PHPUnit_Framework_TestCase
     public function setUp()
     {
         $this->internalString = 'foo';
-        $this->internalRenderer = new StubRenderer($this->internalString);
+        $this->internalRenderer = new ValueRenderer($this->internalString);
     }
 
     public function testWithNothing()

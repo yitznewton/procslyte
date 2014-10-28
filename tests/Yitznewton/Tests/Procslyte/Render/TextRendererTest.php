@@ -2,18 +2,19 @@
 
 namespace Yitznewton\Tests\Procslyte\Render;
 
-use Yitznewton\Procslyte\Render\TextRenderer;
+use Yitznewton\Procslyte\Render\Text\TextRenderer;
+use Yitznewton\Procslyte\Render\Text\ValueRenderer;
 
 class TextRendererTest extends \PHPUnit_Framework_TestCase
 {
-    public function testWithNonexistentVariable()
+    public function testVariableWhereNotExists()
     {
         $renderer = new TextRenderer(['variable' => 'title']);
 
         $this->assertNull($renderer->render([]));
     }
 
-    public function testWithExistentVariable()
+    public function testVariableWhereExists()
     {
         $renderer = new TextRenderer(['variable' => 'title']);
 
@@ -21,7 +22,7 @@ class TextRendererTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($title, $renderer->render(['title' => $title]));
     }
 
-    public function testWithExistentForm()
+    public function testVariableWithExistentForm()
     {
         $renderer = new TextRenderer(['variable' => 'title', 'form' => 'short']);
 
@@ -29,7 +30,7 @@ class TextRendererTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($title, $renderer->render(['title-short' => $title]));
     }
 
-    public function testWithNonexistentForm()
+    public function testVariableWithNonexistentForm()
     {
         $renderer = new TextRenderer(['variable' => 'title', 'form' => 'short']);
 
@@ -37,10 +38,10 @@ class TextRendererTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals($title, $renderer->render(['title' => $title]));
     }
 
-    public function testWithValue()
+    public function testValue()
     {
         $value = 'foo';
-        $renderer = new TextRenderer(['value' => $value]);
+        $renderer = new ValueRenderer($value);
 
         $this->assertEquals($value, $renderer->render([]));
     }
