@@ -1,10 +1,10 @@
 <?php
 
-namespace Yitznewton\Tests\Procslyte\Render;
+namespace Yitznewton\Procslyte\Render\Text;
 
 use Yitznewton\Procslyte\Render\Renderer;
 
-class StubRenderer implements Renderer
+class ValueRenderer implements Renderer
 {
     private $value;
 

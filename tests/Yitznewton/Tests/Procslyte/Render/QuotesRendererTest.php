@@ -4,6 +4,7 @@ namespace Yitznewton\Tests\Procslyte\Render;
 
 use Yitznewton\Procslyte\Locale;
 use Yitznewton\Procslyte\Render\QuotesRenderer;
+use Yitznewton\Procslyte\Render\Text\ValueRenderer;
 
 class QuotesRendererTest extends \PHPUnit_Framework_TestCase
 {
@@ -13,7 +14,7 @@ class QuotesRendererTest extends \PHPUnit_Framework_TestCase
     public function setUp()
     {
         $this->value = 'foo.';
-        $this->innerRenderer = new StubRenderer($this->value);
+        $this->innerRenderer = new ValueRenderer($this->value);
     }
 
     public function testRenderWithPunctuationInQuote()

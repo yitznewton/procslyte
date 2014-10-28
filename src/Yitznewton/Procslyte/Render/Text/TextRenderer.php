@@ -1,6 +1,8 @@
 <?php
 
-namespace Yitznewton\Procslyte\Render;
+namespace Yitznewton\Procslyte\Render\Text;
+
+use Yitznewton\Procslyte\Render\Renderer;
 
 class TextRenderer implements Renderer
 {
