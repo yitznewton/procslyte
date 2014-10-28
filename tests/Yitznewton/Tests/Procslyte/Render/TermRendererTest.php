@@ -33,6 +33,14 @@ class TermRendererTest extends \PHPUnit_Framework_TestCase
         new TermRenderer('foo', $termSet);
     }
 
+    public function testWithMissingValue()
+    {
+        $this->setExpectedException('\\Yitznewton\\Procslyte\\InvalidTermException');
+        $termSet = ['foo' => [['bar' => 'baz']]];
+        $renderer = new TermRenderer('foo', $termSet);
+        $renderer->render([]);
+    }
+
     public function testWithDefaults()
     {
         $renderer = new TermRenderer('foo', $this->termSet);

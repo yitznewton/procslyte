@@ -2,6 +2,7 @@
 
 namespace Yitznewton\Procslyte\Render\Text;
 
+use Yitznewton\Procslyte\InvalidTermException;
 use Yitznewton\Procslyte\Render\Renderer;
 use Yitznewton\Procslyte\UndefinedIndexException;
 
@@ -64,18 +65,21 @@ class TermRenderer implements Renderer
             }
         }
 
-        return null;
+        throw new InvalidTermException();
     }
 
     private function renderSetting($setting)
     {
         $returnMultiple = $this->in($this->options, ['plural']);
         $valueMultiple = $this->in($setting, ['valueMultiple']);
+        $value = $this->in($setting, ['value']);
 
         if ($returnMultiple && $valueMultiple) {
             return $valueMultiple;
+        } elseif (!$value) {
+            throw new InvalidTermException();
         } else {
-            return $this->in($setting, ['value']);
+            return $value;
         }
     }
 
