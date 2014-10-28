@@ -7,28 +7,36 @@ use Yitznewton\Procslyte\Render\QuotesRenderer;
 
 class QuotesRendererTest extends \PHPUnit_Framework_TestCase
 {
+    private $value;
+    private $innerRenderer;
+
+    public function setUp()
+    {
+        $this->value = 'foo.';
+        $this->innerRenderer = new StubRenderer($this->value);
+    }
+
     public function testRenderWithPunctuationInQuote()
     {
-        $value = 'foo.';
-        $innerRenderer = new StubRenderer($value);
-        $locale = new Locale(['styleOptions' => ['punctuationInQuote' => true]]);
-        $renderer = new QuotesRenderer([], $innerRenderer, $locale);
-        $this->assertEquals("\"$value\"", $renderer->render([]));
+        $renderer = $this->createRenderer(['punctuationInQuote' => true]);
+        $this->assertEquals("\"$this->value\"", $renderer->render([]));
     }
 
     public function testRenderWithPunctuationOutsideOfQuote()
     {
-        $innerRenderer = new StubRenderer('foo.');
-        $locale = new Locale(['styleOptions' => ['punctuationInQuote' => false]]);
-        $renderer = new QuotesRenderer([], $innerRenderer, $locale);
+        $renderer = $this->createRenderer(['punctuationInQuote' => false]);
         $this->assertEquals('"foo".', $renderer->render([]));
     }
 
     public function testRenderWithDefaultPunctuationInQuote()
     {
-        $innerRenderer = new StubRenderer('foo.');
-        $locale = new Locale([]);
-        $renderer = new QuotesRenderer([], $innerRenderer, $locale);
+        $renderer = $this->createRenderer([]);
         $this->assertEquals('"foo".', $renderer->render([]));
+    }
+
+    private function createRenderer($localeStyleOptions)
+    {
+        $locale = new Locale(['styleOptions' => $localeStyleOptions]);
+        return new QuotesRenderer([], $this->innerRenderer, $locale);
     }
 }

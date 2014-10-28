@@ -2,8 +2,6 @@
 
 namespace Yitznewton\Procslyte\Render;
 
-use Yitznewton\Procslyte\UndefinedIndexException;
-
 class TextRenderer implements Renderer
 {
     private $variable;
@@ -36,10 +34,6 @@ class TextRenderer implements Renderer
             return $citationData[$variableNameWithForm];
         }
 
-        if (empty($citationData[$this->variable])) {
-            throw new UndefinedIndexException();
-        }
-
-        return $citationData[$this->variable];
+        return \igorw\get_in($citationData, [$this->variable], null);
     }
 }
