@@ -5,9 +5,13 @@ namespace Yitznewton\Tests\Procslyte\Render;
 use Yitznewton\Procslyte\Render\TextCase\CapitalizeAllRenderer;
 use Yitznewton\Procslyte\Render\TextCase\CapitalizeFirstRenderer;
 use Yitznewton\Procslyte\Render\TextCase\LowercaseRenderer;
+use Yitznewton\Procslyte\Render\TextCase\SentenceCaseRenderer;
 use Yitznewton\Procslyte\Render\TextCase\TitleCaseRenderer;
 use Yitznewton\Procslyte\Render\TextCase\UppercaseRenderer;
 
+/**
+ * @SuppressWarnings(PHPMD.TooManyMethods)
+ */
 class CaseRendererTest extends \PHPUnit_Framework_TestCase
 {
     public function testLowercase()
@@ -64,5 +68,26 @@ class CaseRendererTest extends \PHPUnit_Framework_TestCase
         $innerRenderer = new StubRenderer('jim ALL jam');
         $renderer = new TitleCaseRenderer([], $innerRenderer);
         $this->assertEquals('Jim ALL Jam', $renderer->render([]));
+    }
+
+    public function testSentenceCaseWithUpper()
+    {
+        $innerRenderer = new StubRenderer('JIM ALL JAM');
+        $renderer = new SentenceCaseRenderer([], $innerRenderer);
+        $this->assertEquals('Jim all jam', $renderer->render([]));
+    }
+
+    public function testSentenceCaseWithMixedAndFirstLower()
+    {
+        $innerRenderer = new StubRenderer('jim ALL jam');
+        $renderer = new SentenceCaseRenderer([], $innerRenderer);
+        $this->assertEquals('Jim all jam', $renderer->render([]));
+    }
+
+    public function testSentenceCaseWithMixed()
+    {
+        $innerRenderer = new StubRenderer('jIm ALL jam');
+        $renderer = new SentenceCaseRenderer([], $innerRenderer);
+        $this->assertEquals('jIm ALL jam', $renderer->render([]));
     }
 }

@@ -4,7 +4,7 @@ namespace Yitznewton\Procslyte\Render\TextCase;
 
 use Yitznewton\Procslyte\Render\Renderer;
 
-class TitleCaseRenderer implements Renderer
+class TitleCaseRenderer extends MultiwordCaseRenderer implements Renderer
 {
     private static $stopWords = [
         'a',
@@ -112,24 +112,5 @@ class TitleCaseRenderer implements Renderer
         }
 
         return ucfirst($lowerWord);
-    }
-
-    /**
-     * @param $string
-     * @return array
-     */
-    private function words($string)
-    {
-        return explode(' ', $string);
-    }
-
-    private function isAllUpper($string)
-    {
-        return !preg_match('/[a-z]/', $string);
-    }
-
-    private function isAllLower($string)
-    {
-        return !preg_match('/[A-Z]/', $string);
     }
 }
