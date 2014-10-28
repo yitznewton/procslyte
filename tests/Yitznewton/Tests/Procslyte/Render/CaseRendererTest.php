@@ -77,6 +77,13 @@ class CaseRendererTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('Jim ALL Jam', $renderer->render([]));
     }
 
+    public function testSentenceCaseWithBlank()
+    {
+        $innerRenderer = new StubRenderer('');
+        $renderer = new SentenceCaseRenderer([], $innerRenderer);
+        $this->assertEquals('', $renderer->render([]));
+    }
+
     public function testSentenceCaseWithUpper()
     {
         $innerRenderer = new StubRenderer('JIM ALL JAM');
