@@ -8,24 +8,22 @@ use Yitznewton\Procslyte\UndefinedIndexException;
 
 class TermRenderer implements Renderer
 {
-    private $termName;
     private $options;
-    private $termSettings;
+    private $termDefinitions;
 
     /**
      * @param array $termName
-     * @param array $allTermSettings
+     * @param array $allTermDefinitions
      * @param array $options
      */
-    public function __construct($termName, array $allTermSettings, array $options = [])
+    public function __construct($termName, array $allTermDefinitions, array $options = [])
     {
-        $this->termSettings = $this->in($allTermSettings, [$termName]);
+        $this->termDefinitions = $this->in($allTermDefinitions, [$termName]);
 
-        if (!$this->termSettings) {
+        if (!$this->termDefinitions) {
             throw new UndefinedIndexException();
         }
 
-        $this->termName = $termName;
         $this->options = $options;
     }
 
@@ -35,9 +33,9 @@ class TermRenderer implements Renderer
      */
     public function render(array $citationData)
     {
-        foreach ($this->termSettings as $setting) {
-            if ($this->matchesCriteria($setting)) {
-                return $this->renderSetting($setting);
+        foreach ($this->termDefinitions as $definition) {
+            if ($this->matchesCriteria($definition)) {
+                return $this->renderDefinition($definition);
             }
         }
 
@@ -45,34 +43,34 @@ class TermRenderer implements Renderer
     }
 
     /**
-     * @param array $setting
+     * @param array $definition
      * @return bool
      */
-    private function matchesCriteria($setting)
+    private function matchesCriteria($definition)
     {
         if (!isset($this->options['form'])) {
-            return $this->in($setting, ['form']) == 'long';
+            return $this->in($definition, ['form']) == 'long';
         }
 
-        return $this->in($setting, ['form']) == $this->options['form'];
+        return $this->in($definition, ['form']) == $this->options['form'];
     }
 
     private function renderDefault()
     {
-        foreach ($this->termSettings as $setting) {
-            if ($this->in($setting, ['form']) == 'long') {
-                return $this->renderSetting($setting);
+        foreach ($this->termDefinitions as $definition) {
+            if ($this->in($definition, ['form']) == 'long') {
+                return $this->renderDefinition($definition);
             }
         }
 
         throw new InvalidTermException();
     }
 
-    private function renderSetting($setting)
+    private function renderDefinition($definition)
     {
         $returnMultiple = $this->in($this->options, ['plural']);
-        $valueMultiple = $this->in($setting, ['valueMultiple']);
-        $value = $this->in($setting, ['value']);
+        $valueMultiple = $this->in($definition, ['valueMultiple']);
+        $value = $this->in($definition, ['value']);
 
         if ($returnMultiple && $valueMultiple) {
             return $valueMultiple;
