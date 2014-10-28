@@ -1,8 +1,10 @@
 <?php
 
-namespace Yitznewton\Procslyte\Render;
+namespace Yitznewton\Procslyte\Render\TextCase;
 
-class LowercaseRenderer implements Renderer
+use Yitznewton\Procslyte\Render\Renderer;
+
+class CapitalizeFirstRenderer implements Renderer
 {
     private $internalRenderer;
 
@@ -22,6 +24,6 @@ class LowercaseRenderer implements Renderer
      */
     public function render(array $citationData)
     {
-        return strtolower($this->internalRenderer->render($citationData));
+        return ucfirst($this->internalRenderer->render($citationData));
     }
 }

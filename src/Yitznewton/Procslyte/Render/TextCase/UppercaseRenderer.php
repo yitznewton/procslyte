@@ -1,6 +1,8 @@
 <?php
 
-namespace Yitznewton\Procslyte\Render;
+namespace Yitznewton\Procslyte\Render\TextCase;
+
+use Yitznewton\Procslyte\Render\Renderer;
 
 class UppercaseRenderer implements Renderer
 {
