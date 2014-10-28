@@ -64,22 +64,38 @@ class TitleCaseRenderer extends MultiwordCaseRenderer implements Renderer
 
     private function renderUpper($string)
     {
-        return implode(' ', $this->renderWords($string, 'renderUpperWord'));
+        return $this->renderString($string, 'renderUpperWord');
     }
 
     private function renderMixed($string)
     {
-        return implode(' ', $this->renderWords($string, 'renderMixedWord'));
+        return $this->renderString($string, 'renderMixedWord');
     }
 
-    /**
-     * @param string $string
-     * @param string $method
-     * @return array
-     */
+    private function renderString($string, $method)
+    {
+        $initialString = implode(' ', $this->renderWords($string, $method));
+        return $this->fixColonStopwords($initialString);
+    }
+
     private function renderWords($string, $method)
     {
         return array_map([$this, $method], $this->words($string));
+    }
+
+    private function fixColonStopwords($string)
+    {
+        $callback = function ($matches) {
+            if ($matches) {
+                return $matches[1] . ucfirst($matches[2]);
+            }
+        };
+
+        foreach (self::$stopWords as $stopWord) {
+            $string = preg_replace_callback('/(:\s*)(' . $stopWord . ')/', $callback, $string);
+        }
+
+        return $string;
     }
 
     /**
@@ -91,9 +107,9 @@ class TitleCaseRenderer extends MultiwordCaseRenderer implements Renderer
 
         if (in_array($lowerWord, self::$stopWords)) {
             return $lowerWord;
+        } else {
+            return ucfirst($lowerWord);
         }
-
-        return ucfirst($lowerWord);
     }
 
     /**
@@ -105,12 +121,6 @@ class TitleCaseRenderer extends MultiwordCaseRenderer implements Renderer
             return $word;
         }
 
-        $lowerWord = strtolower($word);
-
-        if (in_array($lowerWord, self::$stopWords)) {
-            return $lowerWord;
-        }
-
-        return ucfirst($lowerWord);
+        return $this->renderUpperWord($word);
     }
 }

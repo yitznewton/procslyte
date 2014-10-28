@@ -56,6 +56,13 @@ class CaseRendererTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals('Jim the Jam', $renderer->render([]));
     }
 
+    public function testTitleCaseWithUpperAndStopWordFollowingColon()
+    {
+        $innerRenderer = new StubRenderer('JIM: THE JAM');
+        $renderer = new TitleCaseRenderer([], $innerRenderer);
+        $this->assertEquals('Jim: The Jam', $renderer->render([]));
+    }
+
     public function testTitleCaseWithMixed()
     {
         $innerRenderer = new StubRenderer('jIm jAm');

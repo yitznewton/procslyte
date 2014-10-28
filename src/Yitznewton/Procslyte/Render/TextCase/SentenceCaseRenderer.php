@@ -37,6 +37,7 @@ class SentenceCaseRenderer extends MultiwordCaseRenderer implements Renderer
 
     private function firstWordIsLower($internalString)
     {
+        // FIXME what if zero words?
         return $this->isAllLower($this->words($internalString)[0]);
     }
 }
