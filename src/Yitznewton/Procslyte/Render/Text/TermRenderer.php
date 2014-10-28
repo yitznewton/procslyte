@@ -14,12 +14,12 @@ class TermRenderer implements Renderer
 
     /**
      * @param array $termName
-     * @param array $termSet
+     * @param array $allTermSettings
      * @param array $options
      */
-    public function __construct($termName, array $termSet, array $options = [])
+    public function __construct($termName, array $allTermSettings, array $options = [])
     {
-        $this->termSettings = $this->in($termSet, [$termName]);
+        $this->termSettings = $this->in($allTermSettings, [$termName]);
 
         if (!$this->termSettings) {
             throw new UndefinedIndexException();
