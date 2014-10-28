@@ -20,4 +20,18 @@ class TextTest extends \PHPUnit_Framework_TestCase
         $renderer = new TextRenderer(['variable' => 'title']);
         $this->assertEquals($title, $renderer->render(['title' => $title]));
     }
+
+    public function testWithExistentForm()
+    {
+        $title = 'Foo bar baz';
+        $renderer = new TextRenderer(['variable' => 'title', 'form' => 'short']);
+        $this->assertEquals($title, $renderer->render(['title-short' => $title]));
+    }
+
+    public function testWithNonexistentForm()
+    {
+        $title = 'Foo bar baz';
+        $renderer = new TextRenderer(['variable' => 'title', 'form' => 'short']);
+        $this->assertEquals($title, $renderer->render(['title' => $title]));
+    }
 }
