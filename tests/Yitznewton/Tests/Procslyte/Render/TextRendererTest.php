@@ -1,10 +1,10 @@
 <?php
 
-namespace Yitznewton\Tests\Procslyte;
+namespace Yitznewton\Tests\Procslyte\Render;
 
 use Yitznewton\Procslyte\Render\TextRenderer;
 
-class TextTest extends \PHPUnit_Framework_TestCase
+class TextRendererTest extends \PHPUnit_Framework_TestCase
 {
     public function testWithNonexistentVariable()
     {

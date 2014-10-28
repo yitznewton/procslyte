@@ -4,7 +4,7 @@ namespace Yitznewton\Procslyte\Render;
 
 use Yitznewton\Procslyte\UndefinedIndexException;
 
-class TextRenderer
+class TextRenderer implements Renderer
 {
     private $variable;
     private $form;
