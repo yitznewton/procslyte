@@ -13,16 +13,18 @@ class TermRenderer implements Renderer
 
     /**
      * @param array $termName
-     * @param array $allTermDefinitions
+     * @param \stdClass $allTermDefinitions  use \stdClass because pass-by-reference;
+     *                                       this way, many TermRenderers can share
+     *                                       the same object
      * @param array $options
      */
-    public function __construct($termName, array $allTermDefinitions, array $options = [])
+    public function __construct($termName, \stdClass $allTermDefinitions, array $options = [])
     {
-        $this->termDefinitions = $this->in($allTermDefinitions, [$termName]);
-
-        if (!$this->termDefinitions) {
+        if (!isset($allTermDefinitions->$termName)) {
             throw new UndefinedIndexException();
         }
+
+        $this->termDefinitions = $allTermDefinitions->$termName;
 
         $this->options = $options;
     }
