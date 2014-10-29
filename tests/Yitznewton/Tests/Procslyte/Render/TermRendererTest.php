@@ -11,7 +11,7 @@ class TermRendererTest extends \PHPUnit_Framework_TestCase
 
     public function setUp()
     {
-        $this->termSet = [
+        $this->termSet = (object) [
             'foo' => [
                 [
                     'form' => 'long',
@@ -29,14 +29,14 @@ class TermRendererTest extends \PHPUnit_Framework_TestCase
     public function testWithMissingTerm()
     {
         $this->setExpectedException('\\Yitznewton\\Procslyte\\UndefinedIndexException');
-        $termSet = [];
+        $termSet = new \stdClass();
         new TermRenderer('foo', $termSet);
     }
 
     public function testWithMissingValue()
     {
         $this->setExpectedException('\\Yitznewton\\Procslyte\\InvalidTermException');
-        $termSet = ['foo' => [['bar' => 'baz']]];
+        $termSet = (object) ['foo' => [['bar' => 'baz']]];
         $renderer = new TermRenderer('foo', $termSet);
         $renderer->render([]);
     }
