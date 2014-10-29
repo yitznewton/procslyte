@@ -37,7 +37,7 @@ class QuotesRendererTest extends \PHPUnit_Framework_TestCase
 
     private function createRenderer($localeStyleOptions)
     {
-        $locale = new Locale(['styleOptions' => $localeStyleOptions]);
+        $locale = new Locale($localeStyleOptions, new \stdClass());
         return new QuotesRenderer([], $this->innerRenderer, $locale);
     }
 }
