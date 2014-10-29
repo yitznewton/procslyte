@@ -33,7 +33,7 @@ EOF;
 </a>
 EOF;
         $xmlObj = new SimpleXMLElement($xml);
-        $this->assertEquals('there', $xmlObj->b->reduce(function ($cumulative, $current) {
+        $this->assertEquals('there', (string) $xmlObj->b->reduce(function ($cumulative, $current) {
             return $current;
         }, ''));
     }
@@ -51,7 +51,7 @@ EOF;
 </a>
 EOF;
         $xmlObj = new SimpleXMLElement($xml);
-        $this->assertEquals('hi', $xmlObj->b->reduce(function ($cumulative, $current) {
+        $this->assertEquals('hi', (string) $xmlObj->b->reduce(function ($cumulative, $current) {
             return $cumulative;
         }));
     }
@@ -67,7 +67,7 @@ EOF;
 EOF;
         $xmlObj = new SimpleXMLElement($xml);
         $this->assertEquals(['hiyo', 'thereyo'], $xmlObj->b->map(function ($item) {
-            return $item . 'yo';
+            return (string) $item . 'yo';
         }));
     }
 }

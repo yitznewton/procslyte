@@ -39,7 +39,7 @@ class Locale
      */
     public static function fromXml($xml)
     {
-        $xmlObj = new \SimpleXMLElement($xml);
+        $xmlObj = new SimpleXMLElement($xml);
         $styleOptions = ['punctuationInQuote' => self::extractPunctuationInQuote($xmlObj)];
         $termSet = self::extractTermSet($xmlObj);
         return new Locale($styleOptions, $termSet);
@@ -53,22 +53,20 @@ class Locale
 
     private static function extractTermSet(\SimpleXMLElement $xmlObj)
     {
-        $termSet = new \stdClass();
-
-        foreach ($xmlObj->terms->term as $term) {
-            $termName = (string) $term['name'];
+        return $xmlObj->terms->term->reduce(function ($termSet, $current) {
+            $termName = (string) $current['name'];
 
             if (!isset($termSet->$termName)) {
                 $termSet->$termName = [];
             }
 
-            $form = (string) $term['form'] ?: 'long';
-            $entry = self::extractEntry($term, $form);
+            $form = (string) $current['form'] ?: 'long';
+            $entry = self::extractEntry($current, $form);
 
             array_push($termSet->$termName, $entry);
-        }
 
-        return $termSet;
+            return $termSet;
+        }, new \stdClass());
     }
 
     private static function extractEntry(\SimpleXMLElement $term, $form)

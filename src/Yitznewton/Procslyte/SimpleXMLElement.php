@@ -13,7 +13,7 @@ class SimpleXMLElement extends \SimpleXMLElement
         $returnValue = [];
 
         foreach ($this as $item) {
-            array_push($returnValue, $callback($item->cast()));
+            array_push($returnValue, $callback($item));
         }
 
         return $returnValue;
@@ -29,24 +29,14 @@ class SimpleXMLElement extends \SimpleXMLElement
         $isFirstIteration = true;
 
         foreach ($this as $item) {
-            $castItem = $item->cast();
-
             if ($isFirstIteration && is_null($returnValue)) {
-                $returnValue = $castItem;
+                $returnValue = $item;
             }
 
-            $returnValue = $callback($returnValue, $castItem);
+            $returnValue = $callback($returnValue, $item);
             $isFirstIteration = false;
         }
 
         return $returnValue;
-    }
-
-    /**
-     * @SuppressWarnings(PHPMD.UnusedPrivateMethod)
-     */
-    private function cast()
-    {
-        return (string) $this;
     }
 }
