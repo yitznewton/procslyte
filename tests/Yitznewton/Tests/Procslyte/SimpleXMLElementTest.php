@@ -55,4 +55,19 @@ EOF;
             return $cumulative;
         }));
     }
+
+    public function testMap()
+    {
+        $xml = <<<EOF
+<?xml version="1.0" encoding="utf-8"?>
+<a>
+    <b>hi</b>
+    <b>there</b>
+</a>
+EOF;
+        $xmlObj = new SimpleXMLElement($xml);
+        $this->assertEquals(['hiyo', 'thereyo'], $xmlObj->b->map(function ($item) {
+            return $item . 'yo';
+        }));
+    }
 }

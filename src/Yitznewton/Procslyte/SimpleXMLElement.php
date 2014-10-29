@@ -6,6 +6,21 @@ class SimpleXMLElement extends \SimpleXMLElement
 {
     /**
      * @param callable $callback
+     * @return array
+     */
+    public function map(callable $callback)
+    {
+        $returnValue = [];
+
+        foreach ($this as $item) {
+            array_push($returnValue, $callback($item->cast()));
+        }
+
+        return $returnValue;
+    }
+
+    /**
+     * @param callable $callback
      * @param mixed $returnValue
      * @return mixed
      */
