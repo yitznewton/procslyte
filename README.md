@@ -1,4 +1,6 @@
 ![Travis build status](http://img.shields.io/travis/yitznewton/procslyte.svg)
+![Code Climate grade](http://img.shields.io/codeclimate/github/yitznewton/procslyte.svg)
+![Code Climate coverage](http://img.shields.io/codeclimate/coverage/github/yitznewton/procslyte.svg)
 ![PHP 5.3 not supported](http://img.shields.io/badge/5.3-not_supported-red.svg)
 ![PHP 5.4 supported](http://img.shields.io/badge/5.4-supported-green.svg)
 ![PHP 5.5 supported](http://img.shields.io/badge/5.5-supported-green.svg)
