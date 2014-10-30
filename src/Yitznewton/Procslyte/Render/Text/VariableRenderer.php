@@ -30,6 +30,6 @@ class VariableRenderer implements Renderer
             return $citationData[$variableNameWithForm];
         }
 
-        return \igorw\get_in($citationData, [$this->variable], null);
+        return \igorw\get_in($citationData, [$this->variable], '');
     }
 }

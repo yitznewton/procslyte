@@ -11,7 +11,7 @@ class VariableRendererTest extends \PHPUnit_Framework_TestCase
     {
         $renderer = new VariableRenderer(['variable' => 'title']);
 
-        $this->assertNull($renderer->render([]));
+        $this->assertSame('', $renderer->render([]));
     }
 
     public function testVariableWhereExists()
