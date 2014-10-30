@@ -76,8 +76,6 @@ class TermRenderer implements Renderer
 
         if ($returnMultiple && $valueMultiple) {
             return $valueMultiple;
-        } elseif (!$value) {
-            throw new InvalidTermException();
         } else {
             return $value;
         }

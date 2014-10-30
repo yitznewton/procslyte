@@ -8,7 +8,6 @@ class VariableRenderer implements Renderer
 {
     private $variable;
     private $form;
-    private $value;
 
     /**
      * @param array $settings
@@ -17,7 +16,6 @@ class VariableRenderer implements Renderer
     {
         $this->variable = \igorw\get_in($settings, ['variable']);
         $this->form = \igorw\get_in($settings, ['form']);
-        $this->value = \igorw\get_in($settings, ['value']);
     }
 
     /**
@@ -26,10 +24,6 @@ class VariableRenderer implements Renderer
      */
     public function render(array $citationData)
     {
-        if ($this->value) {
-            return $this->value;
-        }
-
         $variableNameWithForm = sprintf('%s-%s', $this->variable, $this->form);
 
         if ($this->form && isset($citationData[$variableNameWithForm])) {
