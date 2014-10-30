@@ -9,9 +9,16 @@ php:
   - 5.6
   - hhvm
 
+env: CODECLIMATE_REPO_TOKEN=dae2ed1a7acc9c7f5532dfec2c68adc8730be2290ffefd1147e1d8e2236c4f0e
+
 install:
   - composer install
 
 script:
   - make -k ci
+
+after_success:
+  - mkdir -p build/logs
+  - ./vendor/bin/phpunit --coverage-clover build/logs/clover.xml
+  - ./vendor/bin/test-reporter
 
