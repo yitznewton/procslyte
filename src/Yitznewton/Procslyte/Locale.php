@@ -2,6 +2,8 @@
 
 namespace Yitznewton\Procslyte;
 
+use Functional as F;
+
 class Locale
 {
     private $styleOptions;
@@ -51,24 +53,26 @@ class Locale
         return $simpleXmlPunctuation === 'true';
     }
 
+    /**
+     * @SuppressWarnings(PHPMD.UnusedLocalVariable)
+     * @SuppressWarnings(PHPMD.ShortVariableName)
+     */
     private static function extractTermSet(\SimpleXMLElement $xmlObj)
     {
-        $termSet = new \stdClass();
-
-        foreach ($xmlObj->terms->term as $term) {
-            $termName = (string) $term['name'];
+        return F\reduce_left($xmlObj->terms->term, function ($currentTerm, $_, $__, $termSet) {
+            $termName = (string) $currentTerm['name'];
 
             if (!isset($termSet->$termName)) {
                 $termSet->$termName = [];
             }
 
-            $form = (string) $term['form'] ?: 'long';
-            $entry = self::extractEntry($term, $form);
+            $form = (string) $currentTerm['form'] ?: 'long';
+            $entry = self::extractEntry($currentTerm, $form);
 
             array_push($termSet->$termName, $entry);
-        }
 
-        return $termSet;
+            return $termSet;
+        }, new \stdClass());
     }
 
     private static function extractEntry(\SimpleXMLElement $term, $form)
