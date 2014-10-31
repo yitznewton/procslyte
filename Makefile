@@ -23,3 +23,7 @@ php-cs-fixer:
 
 phpunit:
 	./vendor/bin/phpunit
+
+codeclimate-coverage:
+	./vendor/bin/phpunit --coverage-clover build/logs/clover.xml
+	CODECLIMATE_REPO_TOKEN=dae2ed1a7acc9c7f5532dfec2c68adc8730be2290ffefd1147e1d8e2236c4f0e ./vendor/bin/test-reporter
