@@ -26,14 +26,20 @@ class TermRendererTest extends \PHPUnit_Framework_TestCase
         ];
     }
 
-    public function testWithMissingTerm()
+    /**
+     * @test
+     */
+    public function withMissingTerm()
     {
         $this->setExpectedException('\\Yitznewton\\Procslyte\\UndefinedIndexException');
         $termSet = new \stdClass();
         new TermRenderer('foo', $termSet);
     }
 
-    public function testWithMissingValue()
+    /**
+     * @test
+     */
+    public function withMissingValue()
     {
         $this->setExpectedException('\\Yitznewton\\Procslyte\\InvalidTermException');
         $termSet = (object) ['foo' => [['bar' => 'baz']]];
@@ -41,25 +47,37 @@ class TermRendererTest extends \PHPUnit_Framework_TestCase
         $renderer->render([]);
     }
 
-    public function testWithDefaults()
+    /**
+     * @test
+     */
+    public function withDefaults()
     {
         $renderer = new TermRenderer('foo', $this->termSet);
         $this->assertEquals('Foo', $renderer->render([]));
     }
 
-    public function testWithNonexistentForm()
+    /**
+     * @test
+     */
+    public function withNonexistentForm()
     {
         $renderer = new TermRenderer('foo', $this->termSet, ['form' => 'short']);
         $this->assertEquals('Foo', $renderer->render([]));
     }
 
-    public function testWithForm()
+    /**
+     * @test
+     */
+    public function withForm()
     {
         $renderer = new TermRenderer('foo', $this->termSet, ['form' => 'verb']);
         $this->assertEquals('Fooing', $renderer->render([]));
     }
 
-    public function testWithPlural()
+    /**
+     * @test
+     */
+    public function withPlural()
     {
         $renderer = new TermRenderer('foo', $this->termSet, ['plural' => true]);
         $this->assertEquals('Fooii', $renderer->render([]));

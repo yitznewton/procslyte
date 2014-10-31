@@ -6,14 +6,20 @@ use Yitznewton\Procslyte\Locale;
 
 class LocaleTest extends \PHPUnit_Framework_TestCase
 {
-    public function testTermSet()
+    /**
+     * @test
+     */
+    public function termSet()
     {
         $termSet = new \stdClass();
         $locale = new Locale([], $termSet);
         $this->assertEquals($termSet, $locale->termSet());
     }
 
-    public function testFromXml()
+    /**
+     * @test
+     */
+    public function fromXml()
     {
         $locale = Locale::fromXml($this->getTestXml());
         $this->assertInstanceOf('\\Yitznewton\\Procslyte\\Locale', $locale);

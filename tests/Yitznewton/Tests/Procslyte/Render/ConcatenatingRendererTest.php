@@ -7,7 +7,10 @@ use Yitznewton\Procslyte\Render\Text\ValueRenderer;
 
 class ConcatenatingRendererTest extends \PHPUnit_Framework_TestCase
 {
-    public function testWithTwo()
+    /**
+     * @test
+     */
+    public function withTwo()
     {
         $subRenderer = new ValueRenderer('foo');
         $renderer = new ConcatenatingRenderer();

@@ -15,91 +15,130 @@ use Yitznewton\Procslyte\Render\TextCase\UppercaseRenderer;
  */
 class CaseRendererTest extends \PHPUnit_Framework_TestCase
 {
-    public function testLowercase()
+    /**
+     * @test
+     */
+    public function lowercase()
     {
         $innerRenderer = new ValueRenderer('FoO');
         $renderer = new LowercaseRenderer([], $innerRenderer);
         $this->assertEquals('foo', $renderer->render([]));
     }
 
-    public function testUppercase()
+    /**
+     * @test
+     */
+    public function uppercase()
     {
         $innerRenderer = new ValueRenderer('FoO');
         $renderer = new UppercaseRenderer([], $innerRenderer);
         $this->assertEquals('FOO', $renderer->render([]));
     }
 
-    public function testCapitalizeAll()
+    /**
+     * @test
+     */
+    public function capitalizeAll()
     {
         $innerRenderer = new ValueRenderer('foo the bar baz');
         $renderer = new CapitalizeAllRenderer([], $innerRenderer);
         $this->assertEquals('Foo The Bar Baz', $renderer->render([]));
     }
 
-    public function testCapitalizeFirst()
+    /**
+     * @test
+     */
+    public function capitalizeFirst()
     {
         $innerRenderer = new ValueRenderer('foo the bar baz');
         $renderer = new CapitalizeFirstRenderer([], $innerRenderer);
         $this->assertEquals('Foo the bar baz', $renderer->render([]));
     }
 
-    public function testTitleCaseWithUpper()
+    /**
+     * @test
+     */
+    public function titleCaseWithUpper()
     {
         $innerRenderer = new ValueRenderer('JIM JAM');
         $renderer = new TitleCaseRenderer([], $innerRenderer);
         $this->assertEquals('Jim Jam', $renderer->render([]));
     }
 
-    public function testTitleCaseWithUpperAndStopWord()
+    /**
+     * @test
+     */
+    public function titleCaseWithUpperAndStopWord()
     {
         $innerRenderer = new ValueRenderer('JIM THE JAM');
         $renderer = new TitleCaseRenderer([], $innerRenderer);
         $this->assertEquals('Jim the Jam', $renderer->render([]));
     }
 
-    public function testTitleCaseWithUpperAndStopWordFollowingColon()
+    /**
+     * @test
+     */
+    public function titleCaseWithUpperAndStopWordFollowingColon()
     {
         $innerRenderer = new ValueRenderer('JIM: THE JAM');
         $renderer = new TitleCaseRenderer([], $innerRenderer);
         $this->assertEquals('Jim: The Jam', $renderer->render([]));
     }
 
-    public function testTitleCaseWithMixed()
+    /**
+     * @test
+     */
+    public function titleCaseWithMixed()
     {
         $innerRenderer = new ValueRenderer('jIm jAm');
         $renderer = new TitleCaseRenderer([], $innerRenderer);
         $this->assertEquals('jIm jAm', $renderer->render([]));
     }
 
-    public function testTitleCaseWithMixedHavingUpperWords()
+    /**
+     * @test
+     */
+    public function titleCaseWithMixedHavingUpperWords()
     {
         $innerRenderer = new ValueRenderer('jim ALL jam');
         $renderer = new TitleCaseRenderer([], $innerRenderer);
         $this->assertEquals('Jim ALL Jam', $renderer->render([]));
     }
 
-    public function testSentenceCaseWithBlank()
+    /**
+     * @test
+     */
+    public function sentenceCaseWithBlank()
     {
         $innerRenderer = new ValueRenderer('');
         $renderer = new SentenceCaseRenderer([], $innerRenderer);
         $this->assertEquals('', $renderer->render([]));
     }
 
-    public function testSentenceCaseWithUpper()
+    /**
+     * @test
+     */
+    public function sentenceCaseWithUpper()
     {
         $innerRenderer = new ValueRenderer('JIM ALL JAM');
         $renderer = new SentenceCaseRenderer([], $innerRenderer);
         $this->assertEquals('Jim all jam', $renderer->render([]));
     }
 
-    public function testSentenceCaseWithMixedAndFirstLower()
+    /**
+     * @test
+     */
+    public function sentenceCaseWithMixedAndFirstLower()
     {
         $innerRenderer = new ValueRenderer('jim ALL jam');
         $renderer = new SentenceCaseRenderer([], $innerRenderer);
         $this->assertEquals('Jim all jam', $renderer->render([]));
     }
 
-    public function testSentenceCaseWithMixed()
+    /**
+     * @test
+     */
+    public function sentenceCaseWithMixed()
     {
         $innerRenderer = new ValueRenderer('jIm ALL jam');
         $renderer = new SentenceCaseRenderer([], $innerRenderer);
