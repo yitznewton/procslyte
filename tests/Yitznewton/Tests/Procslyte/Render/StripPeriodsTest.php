@@ -7,7 +7,10 @@ use Yitznewton\Procslyte\Render\Text\ValueRenderer;
 
 class StripPeriodsTest extends \PHPUnit_Framework_TestCase
 {
-    public function testRender()
+    /**
+     * @test
+     */
+    public function render()
     {
         $innerRenderer = new ValueRenderer('.f.o.o.');
         $renderer = new StripPeriodsRenderer([], $innerRenderer);

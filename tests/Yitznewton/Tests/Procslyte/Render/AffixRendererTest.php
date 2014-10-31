@@ -16,20 +16,29 @@ class AffixRendererTest extends \PHPUnit_Framework_TestCase
         $this->internalRenderer = new ValueRenderer($this->internalString);
     }
 
-    public function testWithNothing()
+    /**
+     * @test
+     */
+    public function withNothing()
     {
         $affixRenderer = new AffixRenderer([], $this->internalRenderer);
         $this->assertEquals($this->internalString, $affixRenderer->render([]));
     }
 
-    public function testWithPrefix()
+    /**
+     * @test
+     */
+    public function withPrefix()
     {
         $prefix = 'bar';
         $affixRenderer = new AffixRenderer(['prefix' => $prefix], $this->internalRenderer);
         $this->assertEquals($prefix . $this->internalString, $affixRenderer->render([]));
     }
 
-    public function testWithSuffix()
+    /**
+     * @test
+     */
+    public function withSuffix()
     {
         $suffix = 'bar';
         $affixRenderer = new AffixRenderer(['suffix' => $suffix], $this->internalRenderer);
