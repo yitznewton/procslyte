@@ -6,7 +6,7 @@
 ![PHP 5.5 supported](http://img.shields.io/badge/5.5-supported-green.svg)
 ![PHP 5.6 supported](http://img.shields.io/badge/5.6-supported-green.svg)
 ![HHVM not tested](http://img.shields.io/hhvm/yitznewton/procslyte.svg)
-![BSD 2-Clause license](http://img.shields.io/packagist/l/yitznewton/procslyte.svg)
+![license: GPL](http://img.shields.io/packagist/l/yitznewton/procslyte.svg)
 
 # ProCSLyte
 ## A PHP processor for Citation Style Language (CSL)
@@ -47,5 +47,4 @@ $ make ci
 
 ## License
 
-[BSD 2-Clause](http://opensource.org/licenses/BSD-2-Clause)
-
+[GPLv3](http://opensource.org/licenses/GPL-3.0)

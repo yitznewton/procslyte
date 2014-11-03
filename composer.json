@@ -1,7 +1,7 @@
 {
     "name": "yitznewton/procslyte",
     "description": "ProCSLyte: a PHP processor for Citation Style Language (CSL)",
-    "license": "BSD-2-Clause",
+    "license": "GPL-3.0",
     "authors": [
         {
             "name": "Yitzchak Schaffer",
