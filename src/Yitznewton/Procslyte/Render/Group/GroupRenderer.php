@@ -11,9 +11,20 @@ class GroupRenderer implements Renderer, VariableUsageSubscriber
     private $emptyVariables = 0;
     private $nonemptyVariables = 0;
 
+    /**
+     * @param array $settings
+     */
     public function __construct(array $settings = [])
     {
         $this->delimiter = \igorw\get_in($settings, ['delimiter']);
+    }
+
+    /**
+     * @param Renderer $renderer
+     */
+    public function addInnerRenderer(Renderer $renderer)
+    {
+        $this->innerRenderers[] = $renderer;
     }
 
     /**
@@ -31,14 +42,6 @@ class GroupRenderer implements Renderer, VariableUsageSubscriber
         } else {
             return $render;
         }
-    }
-
-    /**
-     * @param Renderer $renderer
-     */
-    public function addInnerRenderer(Renderer $renderer)
-    {
-        $this->innerRenderers[] = $renderer;
     }
 
     public function registerEmptyVariable()
