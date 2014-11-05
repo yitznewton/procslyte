@@ -4,9 +4,9 @@ namespace Yitznewton\Procslyte\Render\Conditional;
 
 use Yitznewton\Procslyte\Render\Renderer;
 
-class VariableConditionRenderer extends MatchingRenderer
+class TypeConditionRenderer extends MatchingRenderer
 {
-    private $variables;
+    private $types;
 
     /**
      * @param array $settings
@@ -15,15 +15,15 @@ class VariableConditionRenderer extends MatchingRenderer
     public function __construct(array $settings, Renderer $innerRenderer)
     {
         parent::__construct($settings, $innerRenderer);
-        $this->variables = \igorw\get_in($settings, ['variables']);
+        $this->types = \igorw\get_in($settings, ['types']);
     }
 
     protected function citationDataMatchArray(array $citationData)
     {
-        $callback = function ($currentVariableName) use ($citationData) {
-            return isset($citationData[$currentVariableName]);
+        $callback = function () use ($citationData) {
+            return in_array(\igorw\get_in($citationData, ['type']), $this->types, true);
         };
 
-        return array_map($callback, $this->variables);
+        return array_map($callback, $this->types);
     }
 }
