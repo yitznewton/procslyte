@@ -4,7 +4,7 @@ namespace Yitznewton\Procslyte\Render\Conditional;
 
 use Yitznewton\Procslyte\Render\Renderer;
 
-abstract class MatchingRenderer implements Renderer
+abstract class MultipleMatchRenderer implements Renderer
 {
     const MATCH_ALL = 'all';
     const MATCH_ANY = 'any';

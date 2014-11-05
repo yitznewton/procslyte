@@ -4,7 +4,7 @@ namespace Yitznewton\Procslyte\Render\Conditional;
 
 use Yitznewton\Procslyte\Render\Renderer;
 
-class VariableConditionRenderer extends MatchingRenderer
+class VariableConditionRenderer extends MultipleMatchRenderer
 {
     private $variables;
 
