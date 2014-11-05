@@ -47,7 +47,7 @@ class GroupRendererTest extends \PHPUnit_Framework_TestCase
         $innerRenderer = new VariableRenderer(['variable' => 'title']);
 
         $groupRenderer = new GroupRenderer();
-        $groupRenderer->addInnerRenderer(new VariableRenderer(['variable' => 'title']));
+        $groupRenderer->addInnerRenderer($innerRenderer);
         $innerRenderer->addVariableSubscriber($groupRenderer);
 
         $title = 'foo';
