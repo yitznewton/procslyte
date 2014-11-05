@@ -1,6 +1,6 @@
 <?php
 
-namespace Yitznewton\Tests\Procslyte\Render\Substitution;
+namespace Yitznewton\Procslyte\Tests\Render\Substitution;
 
 use Yitznewton\Procslyte\Render\Substitution\SubstitutionEvent;
 use Yitznewton\Procslyte\Render\Substitution\SubstitutionListener;

@@ -1,6 +1,6 @@
 <?php
 
-namespace Yitznewton\Tests\Procslyte\Render\Substitution;
+namespace Yitznewton\Procslyte\Tests\Render\Substitution;
 
 use Yitznewton\Procslyte\Render\Substitution\SubstitutableRenderer;
 use Yitznewton\Procslyte\Render\Text\ValueRenderer;
