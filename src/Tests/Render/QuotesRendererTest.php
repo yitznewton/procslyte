@@ -1,6 +1,6 @@
 <?php
 
-namespace Yitznewton\Tests\Procslyte\Render;
+namespace Yitznewton\Procslyte\Tests\Render;
 
 use Yitznewton\Procslyte\Locale;
 use Yitznewton\Procslyte\Render\QuotesRenderer;

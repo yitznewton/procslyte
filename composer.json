@@ -23,10 +23,8 @@
     "minimum-stability": "alpha",
     "prefer-stable": true,
     "autoload": {
-        "psr-0": {
-            "Yitznewton\\Utilities\\": "src/",
-            "Yitznewton\\Procslyte\\": "src/",
-            "Yitznewton\\Tests\\Procslyte\\": "tests/"
+        "psr-4": {
+            "Yitznewton\\Procslyte\\": "src/"
         }
     }
 }
