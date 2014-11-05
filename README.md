@@ -25,7 +25,7 @@ To install ProCSLyte in your app:
 $ composer require yitznewton/procslyte
 ```
 
-To work on the ProCSLyte code:
+To work on the ProCSLyte code, clone this repo and do:
 
 ```shell
 $ composer install
@@ -44,6 +44,11 @@ To run the full CI harness:
 ```shell
 $ make ci
 ```
+
+## Documentation
+
+There is [some documentation in docs/](docs/) about design decisions that we
+faced.
 
 ## License
 
