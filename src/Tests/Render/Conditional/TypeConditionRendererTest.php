@@ -2,12 +2,13 @@
 
 namespace Yitznewton\Procslyte\Tests\Render\Conditional;
 
+use Yitznewton\Procslyte\Render\Conditional\MultipleMatchRenderer;
 use Yitznewton\Procslyte\Render\Conditional\TypeConditionRenderer;
 use Yitznewton\Procslyte\Render\Text\ValueRenderer;
 
 class TypeConditionRendererTest extends \PHPUnit_Framework_TestCase
 {
-    private $settings = ['types' => ['book']];
+    private $types = ['book'];
 
     /**
      * @test
@@ -16,7 +17,7 @@ class TypeConditionRendererTest extends \PHPUnit_Framework_TestCase
     {
         $value = 'foo';
         $innerRenderer = new ValueRenderer($value);
-        $renderer = new TypeConditionRenderer($this->settings, $innerRenderer);
+        $renderer = new TypeConditionRenderer($this->types, MultipleMatchRenderer::MATCH_ALL, $innerRenderer);
         $this->assertEquals($value, $renderer->render(['type' => 'book']));
     }
 
@@ -27,7 +28,7 @@ class TypeConditionRendererTest extends \PHPUnit_Framework_TestCase
     {
         $value = 'foo';
         $innerRenderer = new ValueRenderer($value);
-        $renderer = new TypeConditionRenderer($this->settings, $innerRenderer);
+        $renderer = new TypeConditionRenderer($this->types, MultipleMatchRenderer::MATCH_ALL, $innerRenderer);
         $this->assertEmpty($renderer->render([]));
     }
 }

@@ -11,24 +11,28 @@ abstract class MultipleMatchRenderer implements Renderer
     const MATCH_NONE = 'none';
     const MATCH_DEFAULT = self::MATCH_ALL;
 
-    private $match;
+    private $matchChoices;
+    private $matchType;
     private $innerRenderer;
 
     /**
-     * @param array $settings
+     * @param array $matchChoices
+     * @param mixed $matchType
      * @param Renderer $innerRenderer
      */
-    public function __construct(array $settings, Renderer $innerRenderer)
+    public function __construct(array $matchChoices, $matchType, Renderer $innerRenderer)
     {
-        $this->match = \igorw\get_in($settings, ['match'], self::MATCH_DEFAULT);
+        $this->matchChoices = $matchChoices;
+        $this->matchType = $matchType;
         $this->innerRenderer = $innerRenderer;
     }
 
     /**
      * @param array $citationData
-     * @return array
+     * @param string $currentChoice
+     * @return bool
      */
-    abstract protected function citationDataMatchArray(array $citationData);
+    abstract protected function citationMatches(array $citationData, $currentChoice);
 
     /**
      * @param array $citationData
@@ -36,7 +40,7 @@ abstract class MultipleMatchRenderer implements Renderer
      */
     public function render(array $citationData)
     {
-        $allMatches = $this->citationDataMatchArray($citationData);
+        $allMatches = $this->matchArray($citationData);
 
         if ($this->foldMatch($allMatches)) {
             return $this->innerRenderer->render($citationData);
@@ -45,9 +49,18 @@ abstract class MultipleMatchRenderer implements Renderer
         }
     }
 
+    private function matchArray(array $citationData)
+    {
+        $callback = function ($currentThing) use ($citationData) {
+            return $this->citationMatches($citationData, $currentThing);
+        };
+
+        return array_map($callback, $this->matchChoices);
+    }
+
     private function foldMatch(array $allResults)
     {
-        switch ($this->match) {
+        switch ($this->matchType) {
             case self::MATCH_ALL:
                 return !in_array(false, $allResults, true);
             case self::MATCH_ANY:
@@ -55,7 +68,7 @@ abstract class MultipleMatchRenderer implements Renderer
             case self::MATCH_NONE:
                 return !in_array(true, $allResults, true);
             default:
-                throw new \UnexpectedValueException();
+                throw new \UnexpectedValueException('Unknown match type');
         }
     }
 }
